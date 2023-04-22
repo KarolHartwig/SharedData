@@ -213,15 +213,15 @@ namespace HangMan.Tests
         [TestMethod()]
         public void RemoveLifeTest()
         {
-            game.RemoveLife();
+            game.RemoveLive();
             int expected = 5;
             Assert.AreEqual(expected, game.Lifes);
         }
         [TestMethod()]
-        public void RemoveFiveLifesTest()
+        public void RemoveFiveLivesTest()
         {
             for(int i = 0; i<5; i++)
-                game.RemoveLife();
+                game.RemoveLive();
             int expected = 1;
             Assert.AreEqual(expected, game.Lifes);
         }
