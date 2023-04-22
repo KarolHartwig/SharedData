@@ -57,29 +57,28 @@ namespace HangMan
                     new_game.RemoveLetter(input);
                 }
                 if (new_game.Lifes < 0) { 
-                    
-					Console.WriteLine($"\n\nPORAŻKA! HASŁO TO: {word}\n");
+                    Console.WriteLine($"\n\nPORAŻKA! HASŁO TO: {word}\n");
                     Console.WriteLine("Naciśnij dowolny klawisz aby powrócić");
                     Console.Write("> ");
                     Console.ReadKey();
                 }
-			}
+	    }
         }
 
         static string DrawWord()
         {
             string word;
-
-			//LocalVersion
-			/*string fileName = "words.txt";
+    	    //LocalVersion
+	    /*
+	    string fileName = "words.txt";
             string path = Path.Combine(Environment.CurrentDirectory, @"Data\", fileName);
-            string lines = File.ReadAllText(path);*/
+            string lines = File.ReadAllText(path);
+	    */
 
             //github version
 			var url = "https://raw.githubusercontent.com/KarolHartwig/SharedData/np_project/c%23/words.txt";
             var lines = (new WebClient()).DownloadString(url);
-
-			lines = Regex.Replace(lines, @"[,\n]", String.Empty); //relaces \n with \r
+	    lines = Regex.Replace(lines, @"[,\n]", String.Empty); //relaces \n with \r
             lines = Regex.Replace(lines, @"\r\r", " ");
 
             string[] words = lines.Split();
