@@ -15,15 +15,15 @@ namespace HangMan
         public string Guess { get { return guess; } }
         private readonly List<char> availableLetters = new ();
         public List<char> AvailableLetters { get { return availableLetters; } }
-        private int lifes;
-        public int Lifes
+        private int lives;
+        public int Lives
         {
             get { return lifes; }
         }
 
         public Game()
         {
-            this.lifes = 6;
+            this.lives = 6;
             for (int i = 65; i <= 80; i++)
                 availableLetters.Add((char)i);
             this.word = "hangman";
@@ -85,9 +85,9 @@ namespace HangMan
             if(this.availableLetters.Contains(Char.ToUpper(letter)))
                 this.availableLetters.Remove(Char.ToUpper(letter));
         }
-        public void RemoveLife()
+        public void RemoveLive()
         {
-            this.lifes--;
+            this.lives--;
         }
         public bool CheckIfWin()
         {
