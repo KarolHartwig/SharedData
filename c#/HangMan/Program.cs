@@ -27,10 +27,10 @@ namespace HangMan
 
                 Game new_game = new(word);
 
-                while (new_game.Lifes >= 0)
+                while (new_game.Lives >= 0)
                 {
                     Console.Clear();
-                    Console.WriteLine(Gallow.ReturnStage(new_game.Lifes));
+                    Console.WriteLine(Gallow.ReturnStage(new_game.Lives));
 
                     new_game.Draw();
 
@@ -52,11 +52,11 @@ namespace HangMan
                     if (new_game.CheckLetter(input))
                         new_game.ShowGuessed(input);
                     else
-                        new_game.RemoveLife();
+                        new_game.RemoveLive();
 
                     new_game.RemoveLetter(input);
                 }
-                if (new_game.Lifes < 0) { 
+                if (new_game.Lives < 0) { 
                     Console.WriteLine($"\n\nPORAŻKA! HASŁO TO: {word}\n");
                     Console.WriteLine("Naciśnij dowolny klawisz aby powrócić");
                     Console.Write("> ");
