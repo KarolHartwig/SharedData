@@ -76,7 +76,7 @@ namespace HangMan
             string lines = File.ReadAllText(path);*/
 
             //github version
-			var url = "https://raw.githubusercontent.com/xGuti/HangMan/main/HangMan/words.txt";
+			var url = "https://raw.githubusercontent.com/KarolHartwig/SharedData/np_project/c%23/words.txt";
             var lines = (new WebClient()).DownloadString(url);
 
 			lines = Regex.Replace(lines, @"[,\n]", String.Empty); //relaces \n with \r
