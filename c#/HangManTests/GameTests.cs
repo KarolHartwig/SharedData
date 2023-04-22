@@ -215,7 +215,7 @@ namespace HangMan.Tests
         {
             game.RemoveLive();
             int expected = 5;
-            Assert.AreEqual(expected, game.Lifes);
+            Assert.AreEqual(expected, game.Lives);
         }
         [TestMethod()]
         public void RemoveFiveLivesTest()
@@ -223,7 +223,7 @@ namespace HangMan.Tests
             for(int i = 0; i<5; i++)
                 game.RemoveLive();
             int expected = 1;
-            Assert.AreEqual(expected, game.Lifes);
+            Assert.AreEqual(expected, game.Lives);
         }
 
         [TestMethod()]
