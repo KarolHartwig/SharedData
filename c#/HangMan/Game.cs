@@ -18,7 +18,7 @@ namespace HangMan
         private int lives;
         public int Lives
         {
-            get { return lifes; }
+            get { return lives; }
         }
 
         public Game()
@@ -32,7 +32,7 @@ namespace HangMan
         }
         public Game(string word)
         {
-            this.lifes = 6;
+            this.lives = 6;
             for (int i = 65; i <= 90; i++)
                 this.availableLetters.Add((char)i);
             this.word = word;
