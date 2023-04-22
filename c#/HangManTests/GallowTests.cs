@@ -24,9 +24,9 @@ namespace HangMan.Tests
                 "=========\n";
 
 
-            int lifes = 6;
+            int lives = 6;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod()]
@@ -40,9 +40,9 @@ namespace HangMan.Tests
                 "      |\n" +
                 "      |\n" +
                 "=========\n";
-            int lifes = 5;
+            int lives = 5;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod()]
@@ -56,9 +56,9 @@ namespace HangMan.Tests
                 "      |\n" +
                 "      |\n" +
                 "=========\n";
-            int lifes = 4;
+            int lives = 4;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod()]
@@ -72,9 +72,9 @@ namespace HangMan.Tests
                 "      |\n" +
                 "      |\n" +
                 "=========\n";
-            int lifes = 3;
+            int lives = 3;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod()]
@@ -88,9 +88,9 @@ namespace HangMan.Tests
                 "      |\n" +
                 "      |\n" +
                 "=========\n";
-            int lifes = 2;
+            int lives = 2;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod()]
@@ -104,9 +104,9 @@ namespace HangMan.Tests
                 " /    |\n" +
                 "      |\n" +
                 "=========\n";
-            int lifes = 1;
+            int lives = 1;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod()]
@@ -120,30 +120,30 @@ namespace HangMan.Tests
                 " / \\  |\n" +
                 "      |\n" +
                 "=========\n";
-            int lifes = 0;
+            int lives = 0;
 
-            Assert.AreEqual(expected, Gallow.ReturnStage(lifes));
+            Assert.AreEqual(expected, Gallow.ReturnStage(lives));
         }
 
         [TestMethod]
         public void ReturnStage_NegativeOutOfRange_Throws()
         {
             // arrange
-            int lifes = 10;
+            int lives = 10;
 
             // act and assert
-            Assert.ThrowsException <System.Exception>(() => Gallow.ReturnStage(lifes));
-                //ThrowsException<System.ArgumentException>(() => Gallow.ReturnStage(lifes));
+            Assert.ThrowsException <System.Exception>(() => Gallow.ReturnStage(lives));
+                //ThrowsException<System.ArgumentException>(() => Gallow.ReturnStage(lives));
         }
 
         [TestMethod]
         public void ReturnStage_OutOfRange_Throws()
         {
             // arrange
-            int lifes = -5;
+            int lives = -5;
 
             // act and assert
-            Assert.ThrowsException<System.Exception>(() => Gallow.ReturnStage(lifes));
+            Assert.ThrowsException<System.Exception>(() => Gallow.ReturnStage(lives));
         }
     }
 }
