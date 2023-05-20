@@ -52,7 +52,7 @@ namespace HangMan
                     if (new_game.CheckLetter(input))
                         new_game.ShowGuessed(input);
                     else
-                        new_game.RemoveLive();
+                        new_game.RemoveLife();
 
                     new_game.RemoveLetter(input);
                 }

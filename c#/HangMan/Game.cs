@@ -85,7 +85,7 @@ namespace HangMan
             if(this.availableLetters.Contains(Char.ToUpper(letter)))
                 this.availableLetters.Remove(Char.ToUpper(letter));
         }
-        public void RemoveLive()
+        public void RemoveLife()
         {
             this.lives--;
         }
