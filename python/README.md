@@ -7,9 +7,9 @@ Aby uruchomić projekt Django i przeprowadzić migracje, postępuj zgodnie z pon
 
 ## Kroki uruchomienia projektu
 1. Sklonuj repozytorium projektu Django na swój lokalny komputer:
-`git clone https://github.com/gracjan-katek/np-projekt.git`
+`git clone -b np_project https://github.com/KarolHartwig/SharedData.git`
 3. Przejdź do katalogu projektu: 
-`cd np-projekt`
+`cd SharedData/python/`
 3. Utwórz i aktywuj wirtualne środowisko Pythona (zalecane, ale nieobowiązkowe):
 ```
 python3 -m venv myenv # Tworzenie wirtualnego środowiska
