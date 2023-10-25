@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 12.5f;
     private float _timer = 0f;
 
+    [SerializeField] private GameManager _gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,5 +44,11 @@ public class PlayerMovement : MonoBehaviour
 				_timer = 0;
 			}		}
         _timer += Time.deltaTime;
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.collider.tag == "Enemy")
+            _gameManager.Reset();
 	}
 }
