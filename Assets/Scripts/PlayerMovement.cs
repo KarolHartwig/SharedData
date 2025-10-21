@@ -1,54 +1,82 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float _speed = 1;
     private Rigidbody2D _rb;
-    [SerializeField] private float _speed = .15f;
-    private Vector2 _moveDirection;
 
-    private Vector2 _shootDirection;
     [SerializeField] private Rigidbody2D _bulletPrefab;
     [SerializeField] private float _shootingRatio = 1f;
     [SerializeField] private float _bulletSpeed = 12.5f;
-    private float _timer = 0f;
+    
+    private Vector2 _attackInput;
+    private bool _isAttacking;
+    private Coroutine _attackCoroutine;
 
+    private float _timer = 0f;
     [SerializeField] private GameManager _gameManager;
-    // Start is called before the first frame update
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        _moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        _shootDirection = new Vector2(Input.GetAxisRaw("FireHorizontal"), Input.GetAxisRaw("FireVertical"));
+        _timer+=Time.deltaTime;
     }
 
-	private void FixedUpdate()
-	{
-		if (_rb != null)
-        {
-            _rb.transform.position = (Vector2)_rb.transform.position + _moveDirection * _speed;
-        }
-        if(_shootDirection != Vector2.zero)
-        {
-			if (_timer > _shootingRatio)
-			{
-				Rigidbody2D bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
-				bullet.velocity = _shootDirection * _bulletSpeed;
-				_timer = 0;
-			}		}
-        _timer += Time.deltaTime;
-	}
+    void OnMove(InputValue value)
+    {
+        Vector2 move = value.Get<Vector2>();
+        _rb.linearVelocity = move * _speed;
+    }
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if(collision.collider.tag == "Enemy")
-            _gameManager.Reset();
-	}
+    public void OnAttack(InputValue value)
+    {
+        _attackInput = value.Get<Vector2>();
+        bool activeInput = _attackInput != Vector2.zero;
+
+        if (activeInput && !_isAttacking)
+        {
+            _isAttacking = true;
+            _attackCoroutine = StartCoroutine(ShootContinuously());
+        }
+        else if (!activeInput && _isAttacking)
+        {
+            _isAttacking = false;
+            StopCoroutine(_attackCoroutine);
+        }
+    }
+
+    private IEnumerator ShootContinuously()
+    {
+        while (_isAttacking)
+        {
+            if (_timer >= _shootingRatio)
+            {
+                Shoot();
+                _timer = 0f;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    private void Shoot()
+    {
+        if (_attackInput == Vector2.zero)
+            return;
+
+        Rigidbody2D proj = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+        proj.linearVelocity = _attackInput.normalized * _bulletSpeed;
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag.Equals("Enemy")) ;
+        _gameManager.Reset();
+    }
 }
